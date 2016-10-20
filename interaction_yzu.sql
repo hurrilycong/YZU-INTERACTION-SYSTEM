@@ -323,15 +323,41 @@ CREATE TABLE `user` (
   `user_name` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '姓名',
   `user_password` varchar(32) CHARACTER SET utf8 NOT NULL COMMENT '密码',
   `user_authKey` varchar(60) CHARACTER SET utf8 NOT NULL,
+  --2016.10.12 以下四条未实现
+  --'user_email' varchar(255) CHARACTER SET utf8 COMMENT '邮箱',
+  --'user_email_verified' tinyint(1) DEFAULT 0 COMMENT '激活邮箱',
+  --'user_phone' varchar(11) CHARACTER SET utf8 COMMENT '手机',
+  --'user_phone_verified' tinyint(1) DEFAULT 0 COMMENT '激活手机',
   PRIMARY KEY (`user_number`)
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('123456', '彭老师', 'e10adc3949ba59abbe56e057f20f883e', 'bVmjsZqDyl0ATFWDITQRA6el0SHPxpgC');
-INSERT INTO `user` VALUES ('123457', 'teacher2', 'e10adc3949ba59abbe56e057f20f883e', '48mz4slUIBbirnkDnf_Qtqju0MFy6G4B');
-INSERT INTO `user` VALUES ('141304120', 'Sanc', 'e10adc3949ba59abbe56e057f20f883e', 'zlJ4pKv0rW26jOE899-p_Ugi-9PxdhF_');
-INSERT INTO `user` VALUES ('141304121', 'sancs', 'e10adc3949ba59abbe56e057f20f883e', '4QdIbGIC-2aEgC8kVqYyPtfNAndqKMBx');
-INSERT INTO `user` VALUES ('141304122', '小明', 'e10adc3949ba59abbe56e057f20f883e', '4mFd6EmpEvc6DtfOx0i0BboyiEiJ7spw');
-INSERT INTO `user` VALUES ('141304123', 'xiaohua', 'e10adc3949ba59abbe56e057f20f883e', '1Usdguug8j-AynHJ_qgQjtd3mkAeLdd1');
+INSERT INTO `user` VALUES ('123456', '彭老师', 'e10adc3949ba59abbe56e057f20f883e', 'bVmjsZqDyl0ATFWDITQRA6el0SHPxpgC');--, 'admin@123.com', 1, '12345678910', 1);
+INSERT INTO `user` VALUES ('123457', 'teacher2', 'e10adc3949ba59abbe56e057f20f883e', '48mz4slUIBbirnkDnf_Qtqju0MFy6G4B');--, 'a123@123.com', 1, '12345678910', 1);
+INSERT INTO `user` VALUES ('141304120', 'Sanc', 'e10adc3949ba59abbe56e057f20f883e', 'zlJ4pKv0rW26jOE899-p_Ugi-9PxdhF_');--, 'admin@123.com', 1, '12345678910', 1);
+INSERT INTO `user` VALUES ('141304121', 'sancs', 'e10adc3949ba59abbe56e057f20f883e', '4QdIbGIC-2aEgC8kVqYyPtfNAndqKMBx');--, 'admin@123.com', 1, '12345678910', 1);
+INSERT INTO `user` VALUES ('141304122', '小明', 'e10adc3949ba59abbe56e057f20f883e', '4mFd6EmpEvc6DtfOx0i0BboyiEiJ7spw');--, 'admin@123.com', 1, '12345678910', 1);
+INSERT INTO `user` VALUES ('141304123', 'xiaohua', 'e10adc3949ba59abbe56e057f20f883e', '1Usdguug8j-AynHJ_qgQjtd3mkAeLdd1');--, 'admin@123.com', 1, '12345678910', 1);
+
+-- -----------------------------------------------
+-- table structure for 'announcement'
+-- -----------------------------------------------
+
+DROP TABLE IF EXISTS 'announcement';
+CREATE TABLE 'announcement'(
+  'announce_id' int(12) NOT NULL COMMENT '公告ID',
+  'course_id' int(12) NOT NULL COMMENT '课程ID',
+  'announce_title' varchar(20) CHARACTER SET utf8 NOT NULL COMMENT '公告标题',
+  'announce_content' varchar(255) CHARACTER SET utf8 DEFAULT '' COMMENT '公告内容',
+  'announce_time' datetime NOT NULL COMMENT '发布公告时间',
+  PRIMARY KEY('announce_id'),
+  CONSTRAINT 'announce_and_teacher_course' FOREIGN KEY('course_id') REFERENCES 'teacher_course' ('course_id') ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- -------------------------------------------------
+-- Records of announcement_to_student
+-- -------------------------------------------------
+
+INSERT INTO 'announcement' VALUES('1', '1', 'Computer System公告测试', '这是Computer System课程的第一次公告','2016-10-20 18:45:30');

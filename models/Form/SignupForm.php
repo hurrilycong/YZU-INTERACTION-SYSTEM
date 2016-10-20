@@ -19,6 +19,8 @@ class SignupForm extends Model
     public $password;
     public $repassword;
     public $isteacher = false;
+    //public $email;
+   // public $phone;
 
 
 
@@ -28,11 +30,12 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            [['userid', 'password', 'username'], 'required'],
+            [['userid', 'password', 'username'/*, 'email'*/], 'required'],
             [['username'], 'string', 'min' => '2', 'max' => '10'],
             [['userid'], 'integer','min' => '100000', 'max' => '100000000000'],
             [['password', 'repassword'], 'string', 'min' => '6', 'max' => '12'],
             [['repassword'], 'compare', 'compareAttribute' => 'password'],
+            //[['email'], 'email'],
             [['isteacher'], 'boolean'],
           
         ];
@@ -48,6 +51,8 @@ class SignupForm extends Model
             'username' => '姓名',
             'password' => '密码',
             'repassword' => '重复密码',
+            //'email' => '邮箱',
+            //'phone' => '手机',
             'isteacher' => '注册教师',
         ];
     }
