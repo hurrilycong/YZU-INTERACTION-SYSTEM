@@ -67,7 +67,6 @@ class TeacherController extends \yii\web\Controller
         }
         return $this->render('reset-password', ['model' => $model]);
     }
-
     /**
      * 找到当前用户的用户表信息
      * @return $model

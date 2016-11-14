@@ -30,7 +30,7 @@ class TWorkForm extends Model
     public function rules()
     {
         return [
-            [['title', 'content', 'deadline_mon', 'deadline_day'], 'required', '此项不能为空'],
+            [['title', 'content', 'deadline_mon', 'deadline_day'], 'required', 'message' => '此项不能为空'],
             [['deadline_day'], 'number', 'min' => '1', 'max' => '31'],
             [['deadline_mon'], 'number', 'min' => '1', 'max' => '12'],
             [['title'], 'string', 'min' => '2', 'max' => '255'],

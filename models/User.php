@@ -12,6 +12,7 @@ use yii\web\IdentityInterface;
  * @property string $user_name
  * @property string $user_password
  * @property string $user_authKey 
+ * @property string $user_authKey
  *
  * @property AuthAssignment[] $authAssignments
  * @property AuthItem[] $itemNames
@@ -161,7 +162,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->hasOne(TeacherInformation::className(), ['teacher_number' => 'user_number']);
     }
-    
+   
     public function setPassword($password)
     {
         $this->user_password = \md5($password);

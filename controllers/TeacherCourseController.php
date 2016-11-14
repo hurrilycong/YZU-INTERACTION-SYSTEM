@@ -192,6 +192,7 @@ class TeacherCourseController extends Controller
                 'model' => $model,
             ]);
         }
+        return $this->render('create', ['model' => $model]);
     }
 
     /**

@@ -14,7 +14,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('修改密码'  , ['reset-password'], ['class' => 'btn btn-primary']) ?>
     </p>

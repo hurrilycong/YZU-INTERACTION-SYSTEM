@@ -23,7 +23,7 @@ class LoadStudentForm extends Model
     public function rules()
     {
         return [
-            [['student_class', 'course_id'], 'required', '此项不能为空'],
+            [['student_class', 'course_id'], 'required', 'message' => '此项不能为空'],
            // [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' =>Course::className(), 'targetAttribute' => ['course_id' => 'course_id']]
         ];
     }

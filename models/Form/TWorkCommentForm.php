@@ -19,7 +19,7 @@ class TWorkCommentForm extends Model
     public function rules()
     {
         return [
-            [['grade', 'comment'], 'required', '此项不能为空'],
+            [['grade', 'comment'], 'required', 'message' => '此项不能为空'],
             [['grade'], 'number', 'min' => 0.0, 'max' => 100],
             [['comment'], 'string', 'min' => 0, 'max' => 10000], 
         ];

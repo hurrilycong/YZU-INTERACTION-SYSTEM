@@ -24,7 +24,7 @@ class CourseForm extends Model
     public function rules()
     {
         return [
-            [['title', 'content'], 'required', '此项不能为空'],
+            [['title', 'content'], 'required', 'message' => '此项不能为空'],
             [['title'], 'string', 'min' => '2', 'max' => '255'],
             [['content'], 'string', 'min' => '10', 'max' => '20000']
         ];

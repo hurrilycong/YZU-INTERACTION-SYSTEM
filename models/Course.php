@@ -36,7 +36,7 @@ class Course extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['course_name', 'teacher_number'], 'required'],
+            [['course_name', 'teacher_number'], 'required', 'message' => '此项不能为空'],
             [['course_content'], 'string'],
             [['teacher_number'], 'integer'],
             [['course_name'], 'string', 'max' => 255],

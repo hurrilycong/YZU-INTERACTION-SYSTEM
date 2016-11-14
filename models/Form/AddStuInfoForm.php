@@ -22,7 +22,7 @@ class AddStuInfoForm extends Model
     public function rules()
     {
         return [
-            [['student_class', 'student_number'], 'required', '此项不能为空'],
+            [['student_class', 'student_number'], 'required', 'message' => '此项不能为空'],
             [['student_number'], 'integer'],
             [['student_class'], 'string', 'max' => 50],
         ];

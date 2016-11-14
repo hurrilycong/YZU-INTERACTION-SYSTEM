@@ -107,42 +107,40 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $transaction = \Yii::$app->db->beginTransaction();
-                try{
-                    $user = new User();
-                    $student = new StudentInformation();
-                    $user->user_number = $model->userid;
-                    $user->user_name = $model->username;
-                    $user->user_password = $model->password;
-                    $student->student_number = $model->userid;
-                    $user->save();
-                    $student->save();//将学号写入学生信息表中
-                    $transaction->commit();
-                } catch (Exception $ex) {
+            try{
+                $user = new User();
+                $student = new StudentInformation();
+                $user->user_number = $model->userid;
+                $user->user_name = $model->username;
+                $user->user_password = $model->password;
+                $student->student_number = $model->userid;
+                $user->save();
+                $student->save();//将学号写入学生信息表
+                $transaction->commit();
+            }
+            catch (Exception $ex) {
                     $transaction->rollBack();
-                    
-
-        }
-                    //设置角色
-                    if($model->isteacher == TRUE){
-                        $auth = Yii::$app->authManager;
-                        $userRole = $auth->getRole('nochecked_teacher');
-                        $auth->assign($userRole, $user->user_number);
-                        $identity = User::findOne($user->user_number);
-                        Yii::$app->user->login($identity, 0);
-                        return $this->redirect(['/teacher/update-user']);
-                    }else{
-                        $auth = Yii::$app->authManager;
-                        $userRole = $auth->getRole('student');
-                        $auth->assign($userRole, $user->user_number);
-                        $identity = User::findOne($user->user_number);
-                        Yii::$app->user->login($identity, 0);
-                        //跳转到学生信息完善
-                        return $this->redirect(['/student/update-user']);
-
-                    }
-                    Yii::$app->session->setFlash('success', "注册成功");
-                    return $this->goBack();
-                }       
+            }       
+            //设置角色
+            if($model->isteacher == TRUE){
+                $auth = Yii::$app->authManager;
+                $userRole = $auth->getRole('nochecked_teacher');
+                $auth->assign($userRole, $user->user_number);
+                $identity = User::findOne($user->user_number);
+                Yii::$app->user->login($identity, 0);
+                return $this->redirect(['/teacher/update-user']);
+            }else{
+                $auth = Yii::$app->authManager;
+                $userRole = $auth->getRole('student');
+                $auth->assign($userRole, $user->user_number);
+                $identity = User::findOne($user->user_number);
+                Yii::$app->user->login($identity, 0);
+                //跳转到学生信息完善
+                return $this->redirect(['/student/update-user']);
+            }
+            Yii::$app->session->setFlash('success', "注册成功");
+            return $this->goBack();
+        }       
         return $this->render('signup', [
             'model' => $model,
         ]);
@@ -176,6 +174,7 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
     public function actionForgotPassword()
     {
         return $this->render('forgot-password');

@@ -71,7 +71,6 @@ class StudentController extends \yii\web\Controller
         return $this->render('reset-password', ['model' => $model]);
     }
 
-
     /**
      * 找到当前用户的用户表信息
      * @return $model
@@ -91,13 +90,6 @@ class StudentController extends \yii\web\Controller
      * @throws NotFoundHttpException
      */
     protected function findStudentinfoModel(){
-
-        $model= StudentInformation::find()->where(['student_number' => Yii::$app->user->getId()])->one();
-        if($model != null){
-            return $model;
-        }
-        throw new NotFoundHttpException('错误操作！2');
-
         $model= StudentInformation::find()->where(['student_number' => Yii::$app->user->getId()])->one(); 
         return $model;
     }
