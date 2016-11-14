@@ -29,8 +29,8 @@ class CourseNoticeBroadcast extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['notice_id', 'student_number', 'is_read'], 'required'],
-            [['notice_id', 'student_number', 'is_read'], 'integer'],
+            [['notice_id', 'student_number', 'is_read'], 'required', 'message' => '此项不能为空'],
+            [['notice_id', 'student_number', 'is_read'], 'integer', 'message' => '此项必须为数字'],
             [['student_number'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['student_number' => 'user_number']],
         ];
     }

@@ -56,8 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <div class="form-group">
             
-            <?=            Html::submitButton('重置', ['class' => 'btn btn-success'])?>
-            <?=            Html::resetButton('取消', ['class' => 'btn btn-success']) ?>
+            <?=            Html::submitButton('重置', ['class' => 'btn btn-primary'])?>
+            <?=            Html::resetButton('取消',  ['class' => 'btn btn-primary', 'name' => 'reset-button'])?>
         </div>
         
         <?php        ActiveForm::end(); ?>

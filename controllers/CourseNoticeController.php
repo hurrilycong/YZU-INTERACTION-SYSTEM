@@ -9,9 +9,24 @@ use yii\web\NotFoundHttpException;
 use app\models\CourseNoticeBroadcast;
 use app\models\StudentCourse;
 use app\models\teacher\CourseWithTeacher;
+use app\models\CourseNotice;
+use app\models\CourseNoticeSearch;
+use yii\web\Controller;
+use yii\filters\VerbFilter;
 
 class CourseNoticeController extends \yii\web\Controller
 {
+      public function behaviors()
+      {
+        return [
+           'verbs' => [
+               'class' => VerbFilter::className(),
+               'actions' => [
+                   'delete' => ['POST'],
+                            ],
+		       ],
+		];
+		   }
     /**
      * 显示某门课的通知
      * @return mixed

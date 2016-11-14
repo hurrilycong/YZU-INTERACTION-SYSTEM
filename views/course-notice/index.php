@@ -16,7 +16,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('创建新通知', ['create-notice', 'cid' => $model->course_id], ['class' => 'btn btn-success']) ?>
+        <?=        Html::a('创建新通知', ['create-notice', 'cid' => $model->course_id], ['class' => 'btn btn-success']) ?>
+        <?=        Html::a('删除通知', ['delete-notice', 'cid' => $model->course_id], ['class' => 'btn btn-success'])?>
+        <?=        Html::a('修改通知', ['update-notice', 'cid' => $model->course_id], ['class' => 'btn btn-primary'])?>
+        <?=        Html::a('发布通知', ['push-notice', 'cid' => $model->course_id], ['class' => 'btn btn-primary'])?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
