@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
 
-            'course_id',
+            //'course_id',
             [
                'attribute'=>'studentCourseLink', 'format'=>'raw' 
             ],

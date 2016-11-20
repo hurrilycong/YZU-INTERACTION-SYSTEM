@@ -90,6 +90,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getAuthKey() {
         return $this->user_authKey;
     }
+    
+    public function getUserName()
+    {
+        return $this->user_name;
+    }
 
     public function getId() {
         return $this->user_number;

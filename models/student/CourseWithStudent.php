@@ -67,7 +67,8 @@ class CourseWithStudent extends Course
      */
     public function getCourseWorkLink()
     {
-        $url = Url::to(['/student-work/index', 'cid' => $this->course_id]);
+        //转到查询单门课程的作业界面
+        $url = Url::to(['/student-work/search-course', 'cid' => $this->course_id]);
         $options =  [];
         return Html::a('查看', $url, $options);
     }

@@ -70,7 +70,7 @@ class StudentCourseSearch extends CourseWithStudent
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'course_id' => $this->course_id,
+            'student_course.course_id' => $this->course_id,
         ]);
 
         $query->andFilterWhere(['like', 'course_name', $this->course_name])

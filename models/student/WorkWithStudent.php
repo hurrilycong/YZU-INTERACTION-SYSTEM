@@ -65,4 +65,12 @@ class WorkWithStudent extends TeacherWork
         return Html::a('作业附件', $url, $option);
     }
     
+    public function getBeginning()
+    {
+        $tmpStr = strip_tags($this->twork_content);
+        $tmpLen = mb_strlen($tmpStr);
+        
+        return mb_substr($tmpStr,0,20,'utf-8').(($tmpLen>20)?'...':'');
+    }
+    
 }

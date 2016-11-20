@@ -20,6 +20,8 @@ use app\models\student\WorkWithStudent;
 use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
+use app\models\StudentCourse;
+use yii\db\Query;
 /**
  * StudentWorkController implements the CRUD actions for StudentWork model.
  */
@@ -54,10 +56,37 @@ class StudentWorkController extends Controller
 
     /**
      * 显示课程号为cid的作业
+     * 应显示当前学生的所有作业，并显示是否做了
      * @throw 当请求不是当前学生所选确认了的课的作业列表时将会抛出404异常
      * @return mixed
      */
-    public function actionIndex($cid)
+    public function actionIndex()
+    {
+        $col = StudentCourse::find('course_id')->where(['and', 'student_number'=> \Yii::$app->user->getId(), 'verified' => '1'])->all();
+        //\yii\helpers\VarDumper::dump($col);
+        //exit(0);
+        $query = WorkWithStudent::find()
+                ->where(['course_id' => $col]);
+        //->innerJoinWith(CourseWithStudent)->innerJoinWith(StudentCourse)->where(['StudentCourse.student_number'=> \Yii::$app->user->getId()])->all();
+        
+         $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 8,
+            ],
+        ]);
+//        \yii\helpers\VarDumper::dump($query);
+//        exit(0);
+
+        return $this->render('index', [
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /*
+     * 显示课程ID为cid的作业
+     */
+    public function actionSearchCourse($cid)
     {
         $course = CourseWithStudent::find()
                 ->innerJoinWith('studentNumbers')
@@ -74,8 +103,10 @@ class StudentWorkController extends Controller
                 'pageSize' => 8,
             ],
         ]);
+        //\yii\helpers\VarDumper::dump($course);
+        //exit(0);
 
-        return $this->render('index', [
+        return $this->render('search-course', [
             'dataProvider' => $dataProvider,
             'course' => $course,
         ]);

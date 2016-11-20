@@ -91,7 +91,7 @@ AppAsset::register($this);
             'itemTemplate' => "<li><i>{link}</i></li>\n",
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
              'homeLink' => ['label' => '首页',
-                            'url' => '/'
+                            'url' => Yii::$app->homeUrl,
                 ],
             ]) ?>
         <?= $content ?>
