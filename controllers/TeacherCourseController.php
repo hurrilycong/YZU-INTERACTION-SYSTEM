@@ -81,6 +81,8 @@ class TeacherCourseController extends Controller
     public function actionWaitingList($cid)
     {
         $selectionData = Yii::$app->request->post('selection');
+//        \yii\helpers\VarDumper::dump($selectionData);
+//        exit(0);
         if($selectionData != NULL)
         {
            // Yii::trace($selectionData);

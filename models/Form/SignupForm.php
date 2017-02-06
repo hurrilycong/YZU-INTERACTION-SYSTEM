@@ -30,7 +30,7 @@ class SignupForm extends Model
         return [
             [['userid', 'password', 'username', 'repassword'], 'required', 'message' => '此项不能为空'],
             [['username'], 'string', 'min' => '2', 'max' => '10', 'message' => '姓名至少为两个字符'],
-            [['userid'], 'integer','min' => '100000', 'max' => '100000000000', 'message' => '学号不正确'],
+            [['userid'], 'integer','min' => '1000', 'max' => '100000000000', 'message' => '学号不正确'],
             //[['userid'], 'unique', 'targetClass' => '\app\models\User', 'message' => '该用户已注册'],
             [['password', 'repassword'], 'string', 'min' => '6', 'max' => '12', 'message' => '密码应大于6个字符小于12个字符'],
             [['repassword'], 'compare', 'compareAttribute' => 'password', 'message' => '两次密码不相同'],

@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('登录', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 <?= Html::resetButton('重置', ['class' => 'btn btn-primary', 'name' => 'reset-button'])?>
-                <?= Html::a('修改密码',['forgot-password'])?>
+                <?= Html::a('忘记密码',['forgot-password'])?>
             </div>
         </div>
 

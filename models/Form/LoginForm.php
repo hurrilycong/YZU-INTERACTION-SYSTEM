@@ -19,6 +19,8 @@ class LoginForm extends Model
     public $rememberMe = true;
 
     private $_user = false;
+    
+    public $verifyCode;
 
 
     /**
@@ -29,12 +31,13 @@ class LoginForm extends Model
         return [
             // username and password are both required
             [['userid', 'password'], 'required', 'message' => '此项不能为空'],
-            [['userid'],'integer','min' => '100000', 'max' => '10000000000'],
+            [['userid'],'integer','min' => '1000', 'max' => '10000000000', 'message' => '此项不能为空'],
             [['password'], 'string','min' => '6', 'max' => '12'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -49,7 +52,7 @@ class LoginForm extends Model
             $user = $this->getUser();
             Yii::trace($this->password);
             if (!$user || !$this->checkPassword($this->password)) {
-                $this->addError($attribute, '请检查工号/学号和密码');
+                $this->addError($attribute, '密码不匹配');
             }
         }
     }
@@ -76,7 +79,9 @@ class LoginForm extends Model
         return [
             'userid' => '学号/工号',
             'password' => '密码',
-            'rememberMe' => '记住我'
+            'verifyCode' => 'verificationCode',
+            'rememberMe' => '记住我',
+            
         ];
     }
     

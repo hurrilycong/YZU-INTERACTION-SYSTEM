@@ -10,6 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use \app\models\Form\TWorkForm;
+use \app\models\Form\ChooseCourseForm;
 use \app\models\StudentWork;
 use \app\models\Form\TWorkCommentForm;
 use \app\models\SworkTwork;
@@ -56,12 +57,11 @@ class TeacherWorkController extends Controller
      * 显示cid课程号对应的作业列表
      * @return mixed
      */
-    public function actionIndex($cid)
+    public function actionIndex()
     {
         //$searchModel = new TeacherWorkSearch();
-       // $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $query = TeacherWork::find()->where(['course_id' => $cid]);
-        $course = Course::findOne($cid);
+        $col = \app\models\teacher\CourseWithTeacher::find('course_id')->where(['teacher_number' => \Yii::$app->user->getId()])->all();
+        $query = TeacherWork::find()->where(['course_id' => $col]);
          $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
@@ -72,7 +72,6 @@ class TeacherWorkController extends Controller
         return $this->render('index', [
             //'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'course' => $course,
         ]);
     }
 
@@ -176,6 +175,21 @@ class TeacherWorkController extends Controller
         ]);
     }
     
+    /*
+     * 创建作业时选择课程
+     */
+    public function actionChooseCourse()
+    {
+        $model = new ChooseCourseForm();
+        $courses = Course::findAll(['teacher_number' => \Yii::$app->user->getId()]);
+        $myCourseList = \yii\helpers\ArrayHelper::map($courses, 'course_id', 'course_name');
+        if($model->load(\Yii::$app->request->post()) && $model->validate())
+        {
+            
+        }
+    }
+
+
     /**
      * 作业批改页面
      * @param integer $sworkid 学生做的作业的id

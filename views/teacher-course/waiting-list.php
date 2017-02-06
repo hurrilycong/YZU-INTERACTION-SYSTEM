@@ -44,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]); ?>
-    <?=Html::submitButton('确认选中项', ['class' => 'btn btn-info',]);?>
+    <?=Html::submitButton('确认选中项', ['class' => 'btn btn-info','name' => 'submit-button']);?>
+    <?= Html::resetButton('删除选中项', ['class' => 'btn btn-info','name' => 'reset-button']);?>
      <?php ActiveForm::end(); ?>
 </div>

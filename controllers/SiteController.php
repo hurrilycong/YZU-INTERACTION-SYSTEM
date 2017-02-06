@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\Form\LoginForm;
 use app\models\Form\ContactForm;
 use app\models\Form\SignupForm;
+use app\models\Form\ForgotPasswordForm;
 use app\models\User;
 use app\models\StudentInformation;
 use app\models\teacher\CourseWithTeacher;
@@ -48,6 +49,14 @@ class SiteController extends Controller
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'backColor' => 0x000000,
+                'maxLength' => 6,
+                'minLength' => 5,
+                'padding' => 5,
+                'height' => 40,
+                'width' => 130,
+                'foreColor' => 0xffffff,
+                'offset' => 4,
             ],
         ];
     }
@@ -177,7 +186,21 @@ class SiteController extends Controller
 
     public function actionForgotPassword()
     {
-        return $this->render('forgot-password');
+        $model = new ForgotPasswordForm();
+        $model1 = new LoginForm();
+        if ($model->load(Yii::$app->request->post())) {
+            //Yii::$app->session->setFlash('contactFormSubmitted');
+            if($model->chooseWay == 1)
+            {
+                //选择手机发送的逻辑
+            }
+            else if($model->chooseWay == 2)
+            {
+                //选择邮箱发送的逻辑
+                return $this->render('in-email',['model' => $model]);
+            }
+        }
+        return $this->render('forgot-password',['model' => $model]);
     }
     public function actionErrorUnregister()
     {
