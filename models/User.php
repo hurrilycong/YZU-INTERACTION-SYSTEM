@@ -172,4 +172,5 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->user_password = \md5($password);
     }
+   
 }

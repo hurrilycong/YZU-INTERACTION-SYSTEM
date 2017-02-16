@@ -30,14 +30,14 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['userid', 'password'], 'required', 'message' => '此项不能为空'],
+            [['userid', 'password','verifyCode'], 'required', 'message' => '此项不能为空'],
             [['userid'],'integer','min' => '1000', 'max' => '10000000000', 'message' => '此项不能为空'],
             [['password'], 'string','min' => '6', 'max' => '12'],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
-            ['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha','message' => '验证码不正确','captchaAction' => '/site/captcha'],
         ];
     }
 
@@ -54,7 +54,11 @@ class LoginForm extends Model
             if (!$user || !$this->checkPassword($this->password)) {
                 $this->addError($attribute, '密码不匹配');
             }
+            else{
+                return true;
+            }
         }
+        
     }
     
     public function checkPassword($password)
@@ -79,7 +83,7 @@ class LoginForm extends Model
         return [
             'userid' => '学号/工号',
             'password' => '密码',
-            'verifyCode' => 'verificationCode',
+            'verifyCode' => '验证码',
             'rememberMe' => '记住我',
             
         ];
@@ -95,6 +99,9 @@ class LoginForm extends Model
         if ($this->validate()) {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
         }
+        $error = $this->errors;
+        var_dump($error);
+        exit(0);
         return false;
     }
 

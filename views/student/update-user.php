@@ -35,8 +35,31 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
     
-        <?= $form->field($model, 'student_class')->textInput() ?>
+        <?= $form->field($model, 'student_class')->dropDownList(['1班' => '1班','2班' => '2班'],['prompt' => '请选择状态']) ?>
+    
+        <?php
+            $allStatus = app\models\College::find()
+                                        ->select(['cname','cnumber'])
+                                        // ->orderBy('position')
+                                        ->indexBy('cnumber')
+                                        ->column()
+        ?>
+        
+        <?= $form->field($model, 'student_college')->dropDownList($allStatus,['prompt' => '请选择状态']) ?>
+    
+        <?php
+            $allMajor = \app\models\Major::find()
+                    ->select(['mname','mnumber'])
+                    ->indexBy('mnumber')
+                    ->column();
+        ?>
+        
+        <?= $form->field($model, 'student_major')->dropDownList($allMajor,['prompt' => '请选择状态']) ?>
 
+        <?= $form->field($model, 'student_email') ?>
+    
+        <?= $form->field($model, 'student_phone') ?>
+    
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('保存', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

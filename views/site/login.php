@@ -38,6 +38,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'password')->passwordInput() ?>
 
+        <?= $form->field($model, 'verifyCode')->widget(yii\captcha\Captcha::className(),[
+            'captchaAction' => '/site/captcha',
+            'template' => '<div class="row"><div class="col-lg-5">{input}</div>'
+            . '<div class="col-lg-5">{image}</div></div>',
+            'imageOptions' => ['alt' => '图片无法加载','title' => '下一张','style' => 'cursor:pointer'],
+        ]); ?>
+    
         <?= $form->field($model, 'rememberMe')->checkbox([
             'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
         ]) ?>

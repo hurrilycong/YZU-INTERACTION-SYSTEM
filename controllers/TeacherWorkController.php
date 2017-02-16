@@ -103,6 +103,11 @@ class TeacherWorkController extends Controller
             }
             $deadline_year = date('Y', time());
             $deadline = strtotime($deadline_year.'-'.$model->deadline_mon.'-'.$model->deadline_day);
+            if($deadline < time())
+            {
+                $deadline_year = date('Y', time()+1);
+                $deadline = strtotime($deadline_year.'-'.$model->deadline_mon.'-'.$model->deadline_day);
+            }
             $teacherWork->twork_title = $model->title;
             $teacherWork->twork_content = $model->content;
             $teacherWork->twork_date = time();
@@ -181,12 +186,11 @@ class TeacherWorkController extends Controller
     public function actionChooseCourse()
     {
         $model = new ChooseCourseForm();
-        $courses = Course::findAll(['teacher_number' => \Yii::$app->user->getId()]);
-        $myCourseList = \yii\helpers\ArrayHelper::map($courses, 'course_id', 'course_name');
         if($model->load(\Yii::$app->request->post()) && $model->validate())
         {
-            
+            return $this->actionCreate($model->student_class);
         }
+        return $this->render('choose-course',['model' => $model]);
     }
 
 

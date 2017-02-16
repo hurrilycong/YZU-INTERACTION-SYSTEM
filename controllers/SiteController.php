@@ -24,8 +24,13 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout','login'],
                 'rules' => [
+                    [
+                        'actions' => ['login'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
                     [
                         'actions' => ['logout'],
                         'allow' => true,
@@ -187,12 +192,13 @@ class SiteController extends Controller
     public function actionForgotPassword()
     {
         $model = new ForgotPasswordForm();
-        $model1 = new LoginForm();
         if ($model->load(Yii::$app->request->post())) {
             //Yii::$app->session->setFlash('contactFormSubmitted');
             if($model->chooseWay == 1)
             {
                 //选择手机发送的逻辑
+                //验证码核对成功后进入修改密码界面
+                    return $this->render('in-phone',['model' => $model]);
             }
             else if($model->chooseWay == 2)
             {

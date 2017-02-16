@@ -26,6 +26,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_number',
             'user_name',
             'studentInformation.student_class',
+            //'studentInformation.student_college',
+            [
+                'attribute' => 'studentInformation.student_college',
+                'value' => $model->studentInformation->studentCollege->cname
+            ],
+            //'studentInformation.student_major',
+            [
+                'attribute' => 'studentInformation.student_major',
+                'value' => $model->studentInformation->studentMajor->mname
+            ],
+            'studentInformation.student_email',
+            'studentInformation.student_phone',
         ],
     ]) ?>
     </div>

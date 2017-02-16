@@ -34,7 +34,7 @@ class ChooseCourseForm extends Model
     public function attributeLabels()
     {
         return [
-            'course_class' => '请选择课程名',
+            'student_class' => '选择课程',
         ];
     }
     

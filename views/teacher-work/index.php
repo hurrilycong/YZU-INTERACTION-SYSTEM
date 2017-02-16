@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = '全部作业';
     <h1><?= Html::encode($this->title) ?></h1>
     <?php  //echo $this->render('_search', ['model' => $searchModel]); ?>
     <p>
-        <?=        Html::a('创建新课程',['choose-course'], ['class' => 'btn btn-primary']); ?>
+        <?=        Html::a('创建新作业',['choose-course'], ['class' => 'btn btn-primary']); ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

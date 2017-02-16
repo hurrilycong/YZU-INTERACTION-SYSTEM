@@ -17,6 +17,7 @@ class ForgotPasswordForm extends Model
     public $user_phone;//暂时不用
     public $user_mail;
     public $chooseWay;//找回方式
+    public $code;
 
     /**
      * @return array the validation rules.
@@ -25,9 +26,11 @@ class ForgotPasswordForm extends Model
     {
         return [
             [['chooseWay'], 'required','message' => '此项不能为空'],
+            [['chooseWay'],'integer'],
             //[['user_mail'],'string'],
-            //[['user_mail', 'email']],
-            //[['user_phone'], 'integer', 'min' => '10000000000','max' => '99999999999', 'message' => '此项不能为空'],
+            ['user_mail', 'email'],//'message' => '邮箱格式不正确'],
+            [['user_phone'], 'match','pattern' => '^1[34578]{1}\d{9}$', 'message' => '手机格式不正确'],
+            ['verificationCode','captcha'],
         ];
     }
     
@@ -36,6 +39,7 @@ class ForgotPasswordForm extends Model
             'user_mail' => '邮箱',
             'user_phone' => '手机号码',
             'chooseWay' => '找回方式',
+            'code' => '验证码',
         ];
     }
     

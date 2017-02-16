@@ -332,8 +332,14 @@ DROP TABLE IF EXISTS `student_information`;
 CREATE TABLE `student_information` (
   `student_number` int(12) NOT NULL COMMENT '学号',
   `student_class` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT '班级',
+  `student_college` int(2) NOT NULL COMMENT '学院',
+  `student_major` int(2) NOT NULL COMMENT '专业',
+  `student_email` varchar(50) UNIQUE COMMENT '邮箱',
+  `student_phone` varchar(11) UNIQUE COMMENT '手机号码',
   PRIMARY KEY (`student_number`),
-  CONSTRAINT `fk_stuinfo_student_number` FOREIGN KEY (`student_number`) REFERENCES `user` (`user_number`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `fk_stuinfo_student_number` FOREIGN KEY (`student_number`) REFERENCES `user` (`user_number`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_stuinfo_college` FOREIGN KEY(`student_college`) REFERENCES `college` (`cnumber`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_stuinfo_major` FOREIGN KEY(`student_major`) REFERENCES `major` (mnumber) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=gbk;
 
 LOCK TABLES `student_information` WRITE;
@@ -341,10 +347,10 @@ LOCK TABLES `student_information` WRITE;
 
 INSERT INTO `student_information` (`student_number`, `student_class`)
 VALUES
-	(141304120,'计科1401'),
-	(141304121,'计科1401'),
-	(141304128,'计科1401'),
-	(1413041202,'计科1401');
+	(141304120,'计科1401',1,1),
+	(141304121,'计科1401',1,1),
+	(141304128,'计科1401',1,1),
+	(1413041202,'计科1401',1,1);
 
 /*!40000 ALTER TABLE `student_information` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -580,3 +586,62 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+DROP TABLE IF EXISTS `college`;
+/* 
+
+学院名
+
+*/
+CREATE TABLE `college`(
+    `cnumber` int(2) NOT NULL COMMENT '学院代码',
+    `cname`   varchar(255) NOT NULL COMMENT '学院名称',
+/*  'unumber' int(2) NOT NULL COMMENT '所属学校代码'，
+*/
+    PRIMARY KEY(`cnumber`)
+    
+)ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+LOCK TABLES `college` WRITE;
+
+INSERT INTO `college`(`cnumber`,`cname`)
+VALUES
+    (1,'信息工程学院'),
+    (2,'建筑工程学院'),
+    (3,'外国语学院'),
+    (4,'法学院');
+
+UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `major`;
+/*
+
+专业
+
+*/
+CREATE TABLE `major`(
+    `mnumber` int(2) NOT NULL COMMENT '专业代码',
+    `mname`   varchar(50) NOT NULL COMMENT '专业名称',
+    `cnumber` int(2) NOT NULL COMMENT '所属学院代码',
+    PRIMARY KEY(`mnumber`,`cnumber`),
+    CONSTRAINT `major_college_fk_1` FOREIGN KEY (`cnumber`) REFERENCES `college` (`cnumber`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+LOCK TABLES `major` WRITE;
+
+INSERT INTO `major`(`mnumber`, `mname`,`cnumber`)
+VALUES
+    (1,'计算机科学与技术',1),
+    (2,'软件工程',1),
+    (3,'建筑设计',2),
+    (4,'建筑史',2),
+    (5,'英语',3),
+    (6,'法语',3),
+    (7,'宪法',4),
+    (8,'婚姻法',4);
+
+UNLOCK TABLES;
+

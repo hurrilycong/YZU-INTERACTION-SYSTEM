@@ -28,9 +28,13 @@ class StudentInformation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['student_number', 'student_class'], 'required'],
+            [['student_number', 'student_class','student_major','student_college'], 'required'],
             [['student_number'], 'integer'],
             [['student_class'], 'string', 'max' => 50],
+            [['student_major'], 'integer'],
+            [['student_college'],'integer'],
+            ['student_email','email'],
+            [['student_phone'], 'match','pattern' => '/^1[34578]{1}\d{9}$/', 'message' => '手机格式不正确'],
             [['student_number'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['student_number' => 'user_number']],
         ];
     }
@@ -43,6 +47,10 @@ class StudentInformation extends \yii\db\ActiveRecord
         return [
             'student_number' => '学号',
             'student_class' => '班级',
+            'student_college' => '所属学院',
+            'student_major' => '所属专业',
+            'student_email' => '邮箱',
+            'student_phone' => '手机号',
         ];
     }
 
@@ -52,5 +60,15 @@ class StudentInformation extends \yii\db\ActiveRecord
     public function getStudentNumber()
     {
         return $this->hasOne(User::className(), ['user_number' => 'student_number']);
+    }
+    
+    public function getStudentCollege()
+    {
+        return $this->hasOne(College::className(),['cnumber' => 'student_college']);
+    }
+    
+    public function getStudentMajor()
+    {
+        return $this->hasOne(Major::className(), ['mnumber' => 'student_major']);
     }
 }
