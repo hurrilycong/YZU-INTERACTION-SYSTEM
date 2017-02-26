@@ -149,7 +149,7 @@ class StudentWorkController extends Controller
                 $sworkTwork->save();
                 return $this->redirect(['work', 'id' => $studentWork->swork_id]);
             }else{
-                 Yii::$app->session->setFlash('error', "提交错误！");
+                 Yii::$app->session->setFlash('error', "提交错误！未在指定时间内提交。");
             }
         }
         return $this->render('commit-twork', [

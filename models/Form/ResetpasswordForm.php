@@ -11,6 +11,7 @@ use yii\helpers\VarDumper;
 
 class ResetPasswordForm extends Model
 {
+    public $password_before;
     public $password;
     public $password_repeat;
     
@@ -19,7 +20,7 @@ class ResetPasswordForm extends Model
      */
     public function rules() {
         return [
-          [['password', 'password_repeat'], 'required', 'message' => '此项不能为空'],
+          [['password', 'password_repeat','password_before'], 'required', 'message' => '此项不能为空'],
           [['password'], 'string', 'min' => 6],
           [['password_repeat'], 'compare', 'compareAttribute' => 'password', 'message' => '两次密码不相同'],
         ];
@@ -29,9 +30,17 @@ class ResetPasswordForm extends Model
         return [
             'password' => '密码',
             'password_repeat' => '重复密码',
+            'password_before' => '原密码'
         ];
     }
     
+    public function checkOldPwd($oldPwd,$id)
+    {
+        $user = new \app\models\UserSearch();
+        $password = $user->search('user_password',['user_id' => $id]);
+    }
+
+
     public function resetPwd($id)
     {
         if(!$this->validate())

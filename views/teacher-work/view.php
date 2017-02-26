@@ -38,6 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => '发布者',
                 'value' => $model->course->teacherNumber->user_name,
             ],
+            'twork_update:datetime',
+            'twork_deadline:datetime',
              'tworkFilesLink:raw'
         ],
     ]) ?>

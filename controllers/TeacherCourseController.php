@@ -300,8 +300,20 @@ class TeacherCourseController extends Controller
         ]);
     }
    
+    
+    /*
+     * 未读留言
+     * 
+     */
 
-    /**
+     public function actionUnreadMessage()
+     {
+         
+         return $this->render('unread-message');
+     }
+
+
+     /**
      * 老师确认某个id的学生的课程申请
      * @param integer $id 学生的学号 $cid 课程号
      * @return boolean 如果更新成功返回true反之false

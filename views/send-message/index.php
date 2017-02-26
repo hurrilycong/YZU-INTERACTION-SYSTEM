@@ -2,14 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\grid\GridView;
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 $this->title = '请选择课程';
-$this->params['breadcrumbs'][] = ['label' => '我的课程', 'url' => ['teacher-course/index']];
+$this->params['breadcrumbs'][] = ['label' => '我的课程', 'url' => ['student-course/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -26,9 +25,9 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
         
         <?php
-            $allStatus = app\models\Course::find()
-                                        ->select(['course_name','course_id'])
-                                        ->where(['teacher_number' => \Yii::$app->user->getId()])
+            $allStatus = app\models\StudentCourse::find()
+                                        ->select(['course_id'])
+                                        ->where(['student_number' => \Yii::$app->user->getId()],['verified' => 1])
                                         ->indexBy('course_id')
                                         ->column()
         ?>

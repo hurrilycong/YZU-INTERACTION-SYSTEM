@@ -14,6 +14,7 @@ $this->title = '教师信息更新';
 $this->params['breadcrumbs'][] = ['label' =>  '个人中心', 'url' => ['/teacher/index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<?php /*
 <?php
     if( Yii::$app->getSession()->hasFlash('success') ) {
 	echo Alert::widget([
@@ -23,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		'body' => Yii::$app->getSession()->getFlash('success'), //消息体
 	]);
     }
-?>
+?>*/?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -53,6 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('保存', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
+                <?=                 Html::a('返回', ['index'], ['class' => 'btn btn-primary']) ?>
             </div>
         </div>
     <?php if (Yii::$app->session->hasFlash('success')): ?>

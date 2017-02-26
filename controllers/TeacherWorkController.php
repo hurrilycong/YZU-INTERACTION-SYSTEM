@@ -188,7 +188,10 @@ class TeacherWorkController extends Controller
         $model = new ChooseCourseForm();
         if($model->load(\Yii::$app->request->post()) && $model->validate())
         {
-            return $this->actionCreate($model->student_class);
+            //$model1 = new TWorkForm();
+            //$model1->setCourseId($model->student_class);
+            return $this->redirect(['create','cid' => $model->student_class]);
+            //return $this->actionCreate($model->student_class);
         }
         return $this->render('choose-course',['model' => $model]);
     }

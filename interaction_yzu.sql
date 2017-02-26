@@ -471,7 +471,11 @@ DROP TABLE IF EXISTS `teacher_information`;
 CREATE TABLE `teacher_information` (
   `teacher_number` int(12) NOT NULL AUTO_INCREMENT COMMENT '教师号',
   `teacher_introduction` text COMMENT '个人简介',
+  `teacher_college` int(2) COMMENT '所属学院',
+  `teacher_phone` varchar(11) COMMENT '手机',
+  `teacher_email` varchar(50) COMMENT '邮箱',
   PRIMARY KEY (`teacher_number`),
+  CONSTRAINT `fk_teainfo_college` FOREIGN KEY(`teacher_college`) REFERENCES `college` (`cnumber`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `teacher_information_ibfk_1` FOREIGN KEY (`teacher_number`) REFERENCES `user` (`user_number`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -480,7 +484,7 @@ LOCK TABLES `teacher_information` WRITE;
 
 INSERT INTO `teacher_information` (`teacher_number`, `teacher_introduction`)
 VALUES
-	(123456,'My name is Peng');
+	(123456,'My name is Peng',1,'18752787079','123@123.com');
 
 /*!40000 ALTER TABLE `teacher_information` ENABLE KEYS */;
 UNLOCK TABLES;
