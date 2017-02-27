@@ -166,7 +166,9 @@ CREATE TABLE `course_message` (
   `message_title` varchar(50) NOT NULL COMMENT '留言标题',
   `message_content` varchar(1000) NOT NULL COMMENT '留言内容',
   `message_date` int(11) NOT NULL,
-  PRIMARY KEY (`message_id`)
+  `course_id` int(12) unsigned NOT NULL COMMENT '课程号',
+  PRIMARY KEY (`message_id`),
+CONSTRAINT `fk_coures_message` FOREIGN KEY (`course_id`) REFERENCES `teacher_course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
@@ -296,7 +298,7 @@ DROP TABLE IF EXISTS `student_course`;
 
 CREATE TABLE `student_course` (
   `student_number` int(12) NOT NULL COMMENT '学生学号',
-  `course_id` int(12) unsigned NOT NULL AUTO_INCREMENT COMMENT '课程号',
+  `course_id` int(12) unsigned NOT NULL COMMENT '课程号',
   `verified` tinyint(1) NOT NULL DEFAULT '0' COMMENT '确认与否',
   PRIMARY KEY (`student_number`,`course_id`),
   KEY `fk_coures` (`course_id`),

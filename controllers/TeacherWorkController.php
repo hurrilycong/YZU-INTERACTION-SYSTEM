@@ -150,7 +150,6 @@ class TeacherWorkController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $formModel,
-                //TODO:显示更新时间未完成
                 'lastupdate' => $model->twork_update,
             ]);
         }

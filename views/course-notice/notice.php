@@ -41,6 +41,10 @@ $this->params['breadcrumbs'][] = '通知详情';
             'notice_title',
             'notice_content:ntext',
             'notice_date:date',
+            [
+                'label' => '发布/最后更新时间',
+                'value' => date('Y-m-d H:i:s',$model->notice_date),
+            ]
         ],
     ]) ?>
 

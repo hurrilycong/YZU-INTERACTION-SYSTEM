@@ -19,7 +19,7 @@ class NoticeForm extends Model
     public function rules()
     {
         return [
-            [['notice_title', 'notice_content'], 'required', '此项不能为空'],
+            [['notice_title', 'notice_content'], 'required', 'message' => '此项不能为空'],
             [['notice_title'], 'string', 'min' => 0, 'max' => 255],
             [['notice_content'], 'string', 'min' => 0, 'max' => 5000]
         ];

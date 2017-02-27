@@ -39,6 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->course->teacherNumber->user_name,
             ],
             'twork_update:datetime',
+            //[
+            //    'label' => '最后更新',
+            //    'value' => date('Y-m-d H:i:s',$model->twork_update),
+            //],
             'twork_deadline:datetime',
              'tworkFilesLink:raw'
         ],

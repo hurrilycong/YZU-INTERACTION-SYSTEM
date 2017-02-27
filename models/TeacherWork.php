@@ -54,7 +54,7 @@ class TeacherWork extends \yii\db\ActiveRecord
             'twork_title' => '作业题目',
             'twork_content' => '作业要求',
             'twork_date' => ' 发布时间',
-            'user_update' => '更新时间',
+            'twork_update' => '最后更新',
             'course_id' => '课程号',
             'usersLink' => '提交数量',
             'tworkFilesLink' => '附件',

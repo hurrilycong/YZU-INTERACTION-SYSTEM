@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('更新资料', ['update-user'], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('我的课程', ['/teacher-course/index'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('未读留言', ['/teacher-course/unread-message'], ['class' => 'btn btn-info']) ?>
+        <?= Html::a('未读留言', ['/send-message/unread-message'], ['class' => 'btn btn-info']) ?>
         <?= Html::a('未批准申请', ['/teacher-course/unread-application'], ['class' => 'btn btn-info']) ?>
     </p>
     <div class="grid-view">

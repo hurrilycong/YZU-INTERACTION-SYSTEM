@@ -299,19 +299,6 @@ class TeacherCourseController extends Controller
             'dataProvider' => $dataProvider,
         ]);
     }
-   
-    
-    /*
-     * 未读留言
-     * 
-     */
-
-     public function actionUnreadMessage()
-     {
-         
-         return $this->render('unread-message');
-     }
-
 
      /**
      * 老师确认某个id的学生的课程申请
