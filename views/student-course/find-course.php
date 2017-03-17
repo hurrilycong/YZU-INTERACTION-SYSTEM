@@ -26,6 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
             'course_id',
+            //'student_course.course_id',
             'course_name',
             'teacherNumber.user_name',
             [

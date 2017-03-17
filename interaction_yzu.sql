@@ -347,12 +347,12 @@ CREATE TABLE `student_information` (
 LOCK TABLES `student_information` WRITE;
 /*!40000 ALTER TABLE `student_information` DISABLE KEYS */;
 
-INSERT INTO `student_information` (`student_number`, `student_class`)
+INSERT INTO `student_information` (`student_number`, `student_class`,`student_college`,`student_major`,`student_email`,`student_phone`)
 VALUES
-	(141304120,'计科1401',1,1),
-	(141304121,'计科1401',1,1),
-	(141304128,'计科1401',1,1),
-	(1413041202,'计科1401',1,1);
+	(141304120,'计科1401',1,1,'123@123.com','18064335967'),
+	(141304121,'计科1401',1,1,'456@123.com','18164335967'),
+	(141304128,'计科1401',1,1,'789@123.com','18264335967'),
+	(1413041202,'计科1401',1,1,'133@123.com','18364335967');
 
 /*!40000 ALTER TABLE `student_information` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -484,7 +484,7 @@ CREATE TABLE `teacher_information` (
 LOCK TABLES `teacher_information` WRITE;
 /*!40000 ALTER TABLE `teacher_information` DISABLE KEYS */;
 
-INSERT INTO `teacher_information` (`teacher_number`, `teacher_introduction`)
+INSERT INTO `teacher_information` (`teacher_number`, `teacher_introduction`,`teacher_college`,`teacher_phone`,`teacher_email`)
 VALUES
 	(123456,'My name is Peng',1,'18752787079','123@123.com');
 
@@ -586,12 +586,12 @@ UNLOCK TABLES;
 
 
 
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/* !40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/* !40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/* !40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/* !40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/* !40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/* !40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
 
@@ -604,8 +604,6 @@ DROP TABLE IF EXISTS `college`;
 CREATE TABLE `college`(
     `cnumber` int(2) NOT NULL COMMENT '学院代码',
     `cname`   varchar(255) NOT NULL COMMENT '学院名称',
-/*  'unumber' int(2) NOT NULL COMMENT '所属学校代码'，
-*/
     PRIMARY KEY(`cnumber`)
     
 )ENGINE=InnoDB DEFAULT CHARSET=gbk;

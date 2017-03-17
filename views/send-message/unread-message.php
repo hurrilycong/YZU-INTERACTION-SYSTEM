@@ -36,7 +36,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'message_title',
             'message_content:ntext',
             'message_date:datetime',
-            'course_id',
+            //'course_id',
+            [
+                'attribute' => 'course_id',
+                'value' => 'course.course_name'
+            ],
+            [
+                'attribute' => 'student_number',
+                'value' => 'studentNumber.studentNumber.user_name'
+            ],
+            ['class' => 'yii\grid\ActionColumn','header' => '操作',
+             'template' => '{view}{update}{delete}',
+                ],
         ],
     ]) ?>
 </div>

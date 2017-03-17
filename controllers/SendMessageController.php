@@ -20,6 +20,7 @@ class SendMessageController extends \yii\web\Controller
             $formModel->message_content = $model->message_content;
             $formModel->message_date = time();
             $formModel->course_id = $model->course_id;
+            $formModel->student_number = \Yii::$app->user->getId();
             $formModel->save();
             
             return $this->redirect(['student/index']);
@@ -42,6 +43,24 @@ class SendMessageController extends \yii\web\Controller
          ]);
          
          return $this->render('unread-message',['dataProvider' => $dataProvider]);
+     }
+     
+     /*
+      * 删除留言
+      */
+     
+     public function actionDeleteMessage($id)
+     {
+         return $this->render('delete-message');
+     }
+     
+     /*
+      * 回复留言
+      */
+     
+     public function actionAnswer()
+     {
+         
      }
      
 }

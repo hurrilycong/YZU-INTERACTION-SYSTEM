@@ -5,6 +5,12 @@ namespace app\models;
 use Yii;
 
 /**
+ * 
+ *       次文件暂已弃用
+ * 
+ * 
+ * 
+ * 
  * This is the model class for table "course_message_student".
  *
  * @property integer $message_id

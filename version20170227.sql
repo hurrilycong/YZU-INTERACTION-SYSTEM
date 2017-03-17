@@ -14,3 +14,9 @@
 # 2017年2月26日
 # 开始编写
 
+DROP TABLE IF EXISTS `admin_information`;
+
+CREATE TABLE `admin_information`(
+    'user_number' int(12) NOT NULL COMMENT '用户ID',
+    ''
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
