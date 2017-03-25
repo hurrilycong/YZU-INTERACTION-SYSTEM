@@ -45,6 +45,7 @@ class CourseMessage extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            //'message_id' => '消息ID',
             'message_title' => '标题',
             'message_content' => '内容',
             'message_date' => '日期',

@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = '全部作业';
         'dataProvider' => $dataProvider,
        // 'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            ['class' => 'yii\grid\SerialColumn','header' => '编号'],
 
             'twork_title',
             //'twork_content',

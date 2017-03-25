@@ -63,4 +63,16 @@ class SendMessageController extends \yii\web\Controller
          
      }
      
+     /*
+      * 
+      * 查看留言
+      */
+     public function actionView($id)
+     {
+         $model = \app\models\CourseMessage::find()->where(['message_id' => $id])->one();
+         return $this->render('view',[
+             'model' => $model
+         ]);
+     }
+     
 }

@@ -100,8 +100,8 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; 扬州大学师生互动系统 <?= date('Y') ?></p>
-
+        <p class="pull-left">&copy; 扬州大学师生互动系统 <?= date('Y') ?>              &COPY; 苏ICP备17013703号</p>
+        
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>

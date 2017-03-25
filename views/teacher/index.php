@@ -24,6 +24,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_number',
             'user_name',
             'teacherInformation.teacher_introduction',
+            [
+                'attribute' => 'teacherInformation.teacher_college',
+                'value' => $model->teacherInformation->teacherCollege->cname
+            ],
+            'teacherInformation.teacher_phone',
+            'teacherInformation.teacher_email'
         ],
     ]) ?>
     </div>

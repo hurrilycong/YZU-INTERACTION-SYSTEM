@@ -4,7 +4,7 @@ namespace app\models\Form;
 
 use app\models\User;
 use yii\base\Model;
-use yii\helpers\VarDumper;
+
 /* 
  * 这是重置密码的模型
  */
@@ -33,29 +33,35 @@ class ResetPasswordForm extends Model
             'password_before' => '原密码'
         ];
     }
-    
+    /*
+     * 
+     * 此方法暂不使用
     public function checkOldPwd($oldPwd,$id)
     {
         $user = new \app\models\UserSearch();
         $password = $user->search('user_password',['user_id' => $id]);
-    }
-
-
-    public function resetPwd($id)
-    {
-        if(!$this->validate())
+        if(\md5($oldPwd) != $password)
         {
             return null;
         }
-        //$user = User::findOne($id);
-        //VarDumper::dump($user);
-        //$user->setPassword($this->password);
-        //VarDumper::dump($user);        exit(0);
-        //VarDumper::dump($user->save() ? TRUE :false);        exit(0);
-        //return $user->save() ? true :false;
+        else
+        {
+            return 1;
+        }
+    }
+*/
+
+    public function resetPwd($id)
+    {
+        if(!$this->validate()){
+            return null;
+        }
+        $user = new \app\models\UserSearch();
+        $password = $user->search('user_password',['user_id' => $id]);
+        if(\md5($this->password_before) != $password){
+            return null;
+        }
         $count = User::updateAll(['user_password' => \md5($this->password)], ['user_number' => $id]);
-        //var_dump($count);
-        //exit(0);
         if ($count > 0) {
             return 1;
         }

@@ -45,8 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'student_number',
                 'value' => 'studentNumber.studentNumber.user_name'
             ],
-            ['class' => 'yii\grid\ActionColumn','header' => '操作',
-             'template' => '{view}{update}{delete}',
+            ['class' => 'yii\grid\ActionColumn',
+             'template' => '{view}{delete}',
                 ],
         ],
     ]) ?>

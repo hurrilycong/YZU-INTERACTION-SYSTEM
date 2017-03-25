@@ -50,7 +50,20 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
     
         <?= $form->field($model, 'teacher_introduction')->textInput() ?>
+    
+         <?php
+            $allStatus = app\models\College::find()
+                                        ->select(['cname','cnumber'])
+                                        // ->orderBy('position')
+                                        ->indexBy('cnumber')
+                                        ->column()
+        ?>
+        <?= $form->field($model, 'teacher_college')->dropDownList($allStatus, ['prompt' => '请选择状态']);?>
 
+        <?= $form->field($model, 'teacher_email') ?>
+    
+        <?= $form->field($model, 'teacher_phone') ?>
+    
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('保存', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

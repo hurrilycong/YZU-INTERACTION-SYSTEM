@@ -62,7 +62,7 @@ class TeacherController extends \yii\web\Controller
                 \Yii::$app->getSession()->setFlash('warning', '新密码与原密码相同');
             }
             else{
-                \Yii::$app->getSession()->setFlash('error', '密码修改失败');
+                \Yii::$app->getSession()->setFlash('error', '密码修改失败,原密码不正确');
             }
         }
         return $this->render('reset-password', ['model' => $model]);

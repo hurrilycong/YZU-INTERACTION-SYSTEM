@@ -1,10 +1,8 @@
 <?php
-
+//未使用
 namespace app\models\Form;
 
-use Yii;
 use yii\base\Model;
-use app\models\User;
 
 /**
  * 学生信息填写表格model

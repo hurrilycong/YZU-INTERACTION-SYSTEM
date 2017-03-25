@@ -50,6 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <?php $form = ActiveForm::begin(); ?>
         
+        <?= $form->field($model, 'password_before')->passwordInput()?>
+        
         <?= $form->field($model, 'password')->passwordInput()?>
         
         <?= $form->field($model, 'password_repeat')->passwordInput()?>

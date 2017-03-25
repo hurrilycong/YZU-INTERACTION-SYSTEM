@@ -54,7 +54,7 @@ class StudentController extends \yii\web\Controller
         $model = new ResetpasswordForm();
         if($model->load(Yii::$app->request->post()))
         {
-            if($model->resetPwd(Yii::$app->user->getId()) === 1)
+            if($model->resetPwd(Yii::$app->user->getId()) === 1 )
             {
                 //修改成功直接转到主页，不需设置提示信息
                 //\Yii::$app->getSession()->setFlash('success','密码修改成功');
@@ -65,7 +65,7 @@ class StudentController extends \yii\web\Controller
                 \Yii::$app->getSession()->setFlash('warning', '新密码与原密码相同');
             }
             else{
-                \Yii::$app->getSession()->setFlash('error', '密码修改失败');
+                \Yii::$app->getSession()->setFlash('error', '密码修改失败,原密码不正确');
             }
         }
         return $this->render('reset-password', ['model' => $model]);

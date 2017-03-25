@@ -325,6 +325,17 @@ VALUES
 /*!40000 ALTER TABLE `student_course` ENABLE KEYS */;
 UNLOCK TABLES;
 
+# 课程最终成绩
+
+DROP TABLE IF EXISTS `student_course_score`
+
+CREATE TABLE `student_course_score`(
+    `student_number` int(12) NOT NULL,
+    `course_id` int(12) NOT NULL,
+    `score` double(3,0) DEFAULT NULL COMMENT '成绩',
+    CONSTRAINT `fk_coures_score` FOREIGN KEY (`course_id`) REFERENCES `student_course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT `fk_student_score` FOREIGN KEY (`student_number`) REFERENCES `student_score` (`student_number`) ON DELETE CASCADE ON UPDATE CASCADE
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 # Dump of table student_information
 # ------------------------------------------------------------

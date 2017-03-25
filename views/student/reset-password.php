@@ -50,6 +50,8 @@ $this->params['breadcrumbs'][] = $this->title;
         
         <?php $form = ActiveForm::begin(); ?>
         
+        <?= $form->field($model, 'password_before')->passwordInput()?>
+        
         <?= $form->field($model, 'password')->passwordInput()?>
         
         <?= $form->field($model, 'password_repeat')->passwordInput()?>
@@ -57,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             
             <?=            Html::submitButton('重置', ['class' => 'btn btn-primary'])?>
-            <?=            Html::resetButton('取消',  ['class' => 'btn btn-primary', 'name' => 'reset-button'])?>
+            <?=            Html::resetButton('返回', ['update-user'], ['class' => 'btn btn-primary', 'name' => 'reset-button'])?>
         </div>
         
         <?php        ActiveForm::end(); ?>
