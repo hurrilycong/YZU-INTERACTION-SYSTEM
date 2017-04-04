@@ -16,6 +16,7 @@ class TeacherController extends \yii\web\Controller
     {
         $model = $this->findUserModel(Yii::$app->user->getId());
         
+        
         return $this->render('index',[
             'model' => $model,
         ]);

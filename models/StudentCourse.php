@@ -78,4 +78,16 @@ class StudentCourse extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['user_number' => 'student_number']);
     }
+    
+    /*
+     * 得到未审核的学生人数
+     * 
+     */
+    public static function getPengdingStuCount()
+    {
+        $count = StudentCourse::find()->innerJoin('teacher_course','student_course.course_id = teacher_course.course_id')
+                                        ->where(['teacher_course.teacher_number' => Yii::$app->user->getId(),'student_course.verified' => 0])
+                                        ->count();
+        return $count;
+    }
 }

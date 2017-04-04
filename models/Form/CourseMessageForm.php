@@ -18,6 +18,7 @@ class CourseMessageForm extends Model
     public $message_content;
     public $message_date;
     public $course_id;
+    public $isread;
 
     /**
      * @return array the validation rules.
@@ -26,7 +27,7 @@ class CourseMessageForm extends Model
     {
         return [
             [['message_title', 'message_content','course_id'], 'required', 'message' => '此项不能为空'],
-            [['course_id'], 'integer'],
+            [['course_id','isread'], 'integer'],
             [['message_title'], 'string','min' => 2, 'max' => 255],
             [['message_content'], 'string', 'max' => 20000],
             [['course_id'], 'exist', 'skipOnError' => true, 'targetClass' => TeacherCourse::className(), 'targetAttribute' => ['course_id' => 'course_id']],

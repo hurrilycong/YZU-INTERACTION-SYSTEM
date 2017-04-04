@@ -311,12 +311,24 @@ class TeacherCourseController extends Controller
                 ->where([ 'verified' => '0', 'teacher_course.course_id' => $cid, 'student_number' => $sid, 'teacher_number' => Yii::$app->user->getId()])
                 ->one();
         $studentCourse->verified = 1;
+        $id = \app\models\CourseNotice::find('notice_id')
+                ->where(['course_id' => $cid])
+                ->all();
+        $courseboardcast = new \app\models\CourseNoticeBroadcast();
+        for ($i = 0;$i < sizeof($id);$i++) {//加入通知表
+            $courseboardcast->notice_id = $id;
+            $courseboardcast->student_number = $sid;
+            $courseboardcast->is_read = 0;
+            if(!$courseboardcast->save())
+            {
+                return FALSE;
+            }
+        }
         if($studentCourse->save()){
              Yii::$app->session->setFlash('info', '批准成功！');
             return TRUE;
         }else{
              throw new NotFoundHttpException(json_encode($studentCourse->getErrors()));
-             return FALSE;
         }
     }
 

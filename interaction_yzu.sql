@@ -167,6 +167,7 @@ CREATE TABLE `course_message` (
   `message_content` varchar(1000) NOT NULL COMMENT '留言内容',
   `message_date` int(11) NOT NULL,
   `course_id` int(12) unsigned NOT NULL COMMENT '课程号',
+  `isread` int NOT NULL DEFAULT 0 COMMENT '是否读',
   PRIMARY KEY (`message_id`),
 CONSTRAINT `fk_coures_message` FOREIGN KEY (`course_id`) REFERENCES `teacher_course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
