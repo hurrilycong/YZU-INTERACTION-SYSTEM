@@ -81,3 +81,65 @@ CREATE TABLE `note_file`(
 LOCK TABLES `note_file` WRITE;
 
 UNLOCK TABLES;
+
+
+# 以下表为4月6日新建
+# 课堂测试表
+
+DROP TABLE IF EXISTS `common_test`;
+
+CREATE TABLE `common_test`(
+    `test_id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '课堂测试ID',
+    `test_title` varchar(255) NOT NULL COMMENT '测试标题',
+    `test_content` text NOT NULl COMMENT '测试内容',
+    `test_answer` varchar(255) NOT NULL COMMENT '测试答案',
+    `test_score` int(3) NOT NULL COMMENT '满分',
+    `dead_line` varchar(255) NOT NULL COMMENT '截至时间',
+    `course_id` int(12) unsigned NOT NULl COMMENT '课程号',
+    `test_date` varchar(255) NOT NULL COMMENT '测试时间',
+    primary key(`test_id`),
+    CONSTRAINT `fk_common_test_course` foreign key(`course_id`) references `teacher_course`(`course_id`) on update cascade on delete cascade
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+
+
+# 课堂测试推送表
+
+DROP TABLE IF EXISTS `common_test_broadcast`;
+
+CREATE TABLE `common_test_broadcast`(
+    `test_id` int(11) unsigned NOT NULl COMMENT '测试ID',
+    `student_number` int(12) NOT NULL COMMENT '学号',
+    `isread` int DEFAULT 0 NOT NULL COMMENT '是否读',
+    primary key(`test_id`,`student_number`),
+    constraint `fk_common_broadcast_test` foreign key(`test_id`) references `common_test`(`test_id`) on update cascade on delete cascade,
+    constraint `fk_common_broadcast_student` foreign key (`student_number`) references `student_information`(`student_number`) on update cascade on delete cascade
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+# 学生答案表
+
+DROP TABLE IF EXISTS `student_test_answer`;
+
+CREATE TABLE `student_test_answer`(
+    `answer_id` int(11) unsigned NOT NULl AUTO_INCREMENT COMMENT '答案ID',
+    `answer_content` text NOT NULL COMMENT '答案内容',
+    `answer_date` varchar(255) NOT NULl COMMENT '上交时间',
+    `student_number` int(12) NOT NULL COMMENT '学号'，
+    primary key(`answer_id`,`student_number`),
+    constraint `fk_stu_answer_stu` foreign key(`student_number`) references `student_information` (`student_number`) on update cascade on delete cascade
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+#成绩表
+
+DROP TABLE IF EXISTS `student_test_score`;
+
+CREATE TABLE `student_test_score`(
+    `test_id` int(11) unsigned NOT NULL COMMENT '测试ID',
+    `answer_id` int(11) unsigned NOT NULL COMMENT '答案ID',
+    `score` int(3) NOT NULL COMMENT '成绩',
+    primary key(`test_id`,`answer_id`),
+    constraint `fk_score_test` foreign key(`test_id`) references `commom_test` (`test_id`) on update cascade on delete cascade,
+    constraint `fk_score_answer` foreign key(`answer_id`) references `student_test_answer`(`answer_id`) on delete cascade on update cascade
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

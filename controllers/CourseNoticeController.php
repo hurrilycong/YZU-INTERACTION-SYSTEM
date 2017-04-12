@@ -103,17 +103,23 @@ class CourseNoticeController extends \yii\web\Controller
      */
     public function pushNoticesToStudent($id){
         $model = $this->findModel($id);
-        $students = StudentCourse::find()->where(['course_Id' => $model->course_id])->all();
+        $students = StudentCourse::find('student_number')->where(['course_id' => $model->course_id,'verified' => 1])->all();
         //TODO:未解决多条插入性能问题
         //TODO:未解决发送失败的具体详情
+        //var_dump($students);
+        //exit(0);
+        //推送存在问题
         $countSuccess = 0;
         foreach ($students as $student){
             $addBroadcast = new CourseNoticeBroadcast();
             $addBroadcast->is_read = 0;
             $addBroadcast->notice_id = $id;
-            $addBroadcast->student_number = $student->student_number;
+            $addBroadcast->student_number = $student;
             if($addBroadcast->save()){
                 $countSuccess++;
+            }
+            else {
+                \var_dump($addBroadcast->getErrors());
             }
         }
         Yii::$app->session->setFlash('success', '成功为'.$countSuccess.'名选课学生推送数据');

@@ -5,7 +5,6 @@ namespace app\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
 use app\models\Form\LoginForm;
 use app\models\Form\ContactForm;
 use app\models\Form\SignupForm;

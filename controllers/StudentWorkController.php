@@ -17,11 +17,10 @@ use app\models\TeacherWork;
 use app\models\student\TworkFileWithStudent;
 use app\models\SworkFile;
 use app\models\student\WorkWithStudent;
-use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 use app\models\StudentCourse;
-use yii\db\Query;
+
 /**
  * StudentWorkController implements the CRUD actions for StudentWork model.
  */

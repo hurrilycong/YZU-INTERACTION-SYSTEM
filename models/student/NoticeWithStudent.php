@@ -2,7 +2,6 @@
 
 namespace app\models\student;
 
-use Yii;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use app\models\CourseNoticeBroadcast;

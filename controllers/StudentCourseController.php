@@ -136,11 +136,13 @@ class StudentCourseController extends \yii\web\Controller
             throw new NotFoundHttpException('非法访问');
         }*/
         $notices = NoticeWithStudent::find()
-                ->innerJoinWith('courseNoticeBroadcasts',['course_notice_broadcast.notice_id == course_notice.notice_id'])
+                ->innerJoinWith('courseNoticeBroadcasts','course_notice_broadcast.notice_id = course_notice.notice_id')
                 ->where(['course_notice_broadcast.student_number' => Yii::$app->user->getId(), 'course_notice_broadcast.is_read' => $status]);
         $dataProvider = new ActiveDataProvider([
             'query' => $notices,
         ]);
+        //var_dump($notices);
+        //exit(0);
         return $this->render('all-course-notices', [
             'dataProvider' => $dataProvider,
             'noticeStatus' => $status,

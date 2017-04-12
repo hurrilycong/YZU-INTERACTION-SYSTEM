@@ -248,7 +248,7 @@ CREATE TABLE `course_notice_broadcast` (
   `notice_id` int(11) unsigned NOT NULL,
   `student_number` int(12) NOT NULL,
   `is_read` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`notice_id`,`student_number`,`is_read`),
+  PRIMARY KEY (`notice_id`,`student_number`),
   KEY `student_number` (`student_number`),
   CONSTRAINT `course_notice_broadcast_ibfk_2` FOREIGN KEY (`student_number`) REFERENCES `user` (`user_number`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `course_notice_broadcast_ibfk_3` FOREIGN KEY (`notice_id`) REFERENCES `course_notice` (`notice_id`) ON DELETE CASCADE ON UPDATE CASCADE

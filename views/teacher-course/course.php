@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = '课程详情';
         <?= Html::a('更新课程', ['update', 'cid' => $model->course_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('上传课件', ['upload-file', 'cid' => $model->course_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('管理作业', ['/teacher-work/index', 'cid' => $model->course_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('管理课堂测试', ['/common-test/index', 'cid' => $model->course_id], ['class' => 'btn btn-primary'])?>
         <?= Html::a('管理通知', ['/course-notice/index', 'cid' => $model->course_id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('删除课程', ['delete', 'cid' => $model->course_id], [
             'class' => 'btn btn-danger',
